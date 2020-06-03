@@ -1,0 +1,19 @@
+{
+  "name": "myplaylist",
+  "version": "1.0.0",
+  "description": "This is the best music app ever",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliartncode/myplaylist.git"
+  },
+  "author": "TCB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eliartncode/myplaylist/issues"
+  },
+  "homepage": "https://github.com/eliartncode/myplaylist#readme"
+}
