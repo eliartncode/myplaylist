@@ -29,6 +29,15 @@ const fileStorage = multer.diskStorage({
 app.use(multer({ storage: fileStorage, limits: {fileSize: 250336978} }).single('image'));
 
 
+
+
+const indexRoutes = require('./routes/index');
+app.use('/', indexRoutes);
+
+const accountRoutes = require('./routes/account');
+app.use('/account', accountRoutes);
+
+
 const port = 6030;
 connection
 .sync()
