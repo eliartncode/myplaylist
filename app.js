@@ -17,6 +17,8 @@ app.locals.moment = require('moment');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(session({ secret: 'ZYYZrJD8gS1YPQGphUIbSLWORnkfpS1j', resave: false, saveUninitialized: false }));
+
 const fileStorage = multer.diskStorage({
     destination: (request, file, callback) => {
         callback(null, 'public/images');

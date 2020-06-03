@@ -1,5 +1,11 @@
 exports.loadIndex = (request, response, next) => {
-    response.render('index', {
 
+    let userData;
+    if(request.session.udata){
+        userData = request.session.udata;
+    }
+
+    response.render('index', {
+        userData: userData
     })
 };

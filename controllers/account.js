@@ -20,6 +20,45 @@ exports.loadVerifyPage = (request, response, next) => {
     })
 };
 
+exports.logout = (request, response, next) => {
+    request.session.udata = null;
+    response.redirect('/account/login');
+};
+
+exports.loginAction = (request, response, next) => {
+
+    const email = request.body.email;
+    const password = request.body.password;
+    Account.findOne({ where: {email: email} })
+    .then(account => {
+        if(account){   
+            bcryptjs.compare(password, account.password)
+            .then(isPasswordMatch => {
+                if(isPasswordMatch){
+
+                    const data = {
+                        id: account.id,
+                        firstName: account.first_name,
+                        lastName: account.last_name,
+                        email: account.email,
+                        isLoggedIn: true
+                    }
+
+                    request.session.udata = data;
+                    response.redirect('/');
+                } else {
+                    console.log('Passwords not match');
+                }
+            })
+        } else {
+            console.log('Account not exist');
+        }
+    })
+    .catch(error => {
+        console.log(error);
+    })
+};
+
 exports.registerAction = (request, response, next) => {
 
     const first_name = request.body.first_name;
@@ -46,7 +85,6 @@ exports.registerAction = (request, response, next) => {
                     isLocked: false
                 })
                 .then(new_account => {
-                    console.log(new_account);
                     response.redirect('/account/login');
                 })
             })
